@@ -1,0 +1,12 @@
+./vendor/*
+/.idea/*
+/.composer/cache/*
+/logs/*
+!/logs/.gitkeep
+/vendor/*
+/temp/*
+/tests/temp/*
+!/tests/temp/.gitkeep
+*.cache
+
+.bash_history

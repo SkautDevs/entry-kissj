@@ -1,0 +1,15 @@
+Hello kissj!
+
+{% for role, ps in list %}
+    {{ role }}<br/>
+    {% for p in ps %}
+        {{ p.id }}<br/>
+        {{ p.firstname }}<br/>
+        {{ p.lastname }}<br/>
+        {{ p.nickname }}<br/>
+        {{ p.patrolName }}<br/>
+        {{ p.tieCode }}<br/>
+        {{ p.birthDate.value|date('Y-m-d') }}<br/>
+        {{ p.sfh }}<br/>
+    {% endfor %}
+{% endfor %}

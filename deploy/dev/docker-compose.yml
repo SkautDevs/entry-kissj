@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+    php-fpm:
+        image: quay.io/kissj/php-ubi
+        volumes:
+            - ../../:/var/www/html
+
+    caddy:
+        image: quay.io/kissj/caddy-ubi
+        ports:
+            - "80:80"
+        depends_on:
+            - php-fpm
+        links:
+            - php-fpm
+
+        environment:
+            - PHPFPM_HOST=php-fpm
+            - WEB_HOST=localhost
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile
+            - ../../:/var/www/html
