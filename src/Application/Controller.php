@@ -23,7 +23,7 @@ class Controller
 
         return $twig->render(
             $response,
-            'list.twig',
+            'main.twig',
             ['list' => $jsonDecode],
         );
     }

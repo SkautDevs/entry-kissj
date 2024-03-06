@@ -103,6 +103,14 @@ h1 {
     font-family: 'skautbold', sans-serif;
 }
 
+a {
+    color: var(--color-link);
+}
+
+a:visited {
+    color: var(--color-link-visited);
+}
+
 .btn {
     background: var(--color-main);
     color: var(--color-card-background);
@@ -116,6 +124,18 @@ h1 {
     font-size: inherit;
     padding: 2px 6px;
     margin: 1px 0;
+}
+
+.search {
+    border: none;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    font-size: inherit;
+    padding: var(--border-radius);
+    display: block;
+    background: var(--color-input-background);
+    color: var(--color-dark);
+    width: calc(100% - ( 2 * var(--border-radius)));
 }
 
 .roleList {

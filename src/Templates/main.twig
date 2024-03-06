@@ -1,15 +1,30 @@
-<html lang="cs">
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ list.eventName }} - vstup - kissj</title>
+    <link rel="shortcut icon" href="favicon-16x16.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<main>
 <h1>{{ list.eventName }} - vstup - kissj</h1>
+
+<script type="text/javascript" src="filter.js"></script>
+<label for="inputFilter">
+    Filtrování podle jména, TIE kódu, patroly...:
+</label>
+<input autofocus="autofocus"
+       id="inputFilter"
+       type="text"
+       class="search"
+       placeholder="zkus Šutr, LKMB, Voňavky..."
+       onkeyup="filterInput()"
+>
 
 {% include 'roleList.twig' with { 'role': 'skupiny', 'participants': list.roles.tl } %}
 {% include 'roleList.twig' with { 'role': 'servis', 'participants': list.roles.ist } %}
+</main>
 
 <footer>
     {{ list.eventName }} 
@@ -17,4 +32,3 @@
     | <a href="https://www.stojimezaukrajinou.cz/" target="_blank">🇺🇦&nbspstojimezaukrajinou.cz</a>
 </footer>
 </body>
-</html>
