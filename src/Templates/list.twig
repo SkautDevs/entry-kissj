@@ -1,15 +1,20 @@
-Hello kissj!
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ list.eventName }} - vstup - kissj</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>{{ list.eventName }} - vstup - kissj</h1>
 
-{% for role, ps in list %}
-    {{ role }}<br/>
-    {% for p in ps %}
-        {{ p.id }}<br/>
-        {{ p.firstname }}<br/>
-        {{ p.lastname }}<br/>
-        {{ p.nickname }}<br/>
-        {{ p.patrolName }}<br/>
-        {{ p.tieCode }}<br/>
-        {{ p.birthDate.value|date('Y-m-d') }}<br/>
-        {{ p.sfh }}<br/>
-    {% endfor %}
-{% endfor %}
+{% include 'roleList.twig' with { 'role': 'skupiny', 'participants': list.roles.tl } %}
+{% include 'roleList.twig' with { 'role': 'servis', 'participants': list.roles.ist } %}
+
+<footer>
+    {{ list.eventName }} 
+    | <a href="https://devs.skauting.cz/" target="_blank">with ♥ created by Lung &amp; company</a>
+    | <a href="https://www.stojimezaukrajinou.cz/" target="_blank">🇺🇦&nbspstojimezaukrajinou.cz</a>
+</footer>
+</body>
+</html>

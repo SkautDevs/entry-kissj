@@ -1,0 +1,10 @@
+<div class="roleList">
+    <h2>{{ role }}</h2>
+    {% if participants %}
+        {% for participant in participants %}
+            {% include "participant.twig" with {'p': participant} %}
+        {% endfor %}
+    {% else %}
+        <p>Nikdo na vstup není (:</p>
+    {% endif %}
+</div>
