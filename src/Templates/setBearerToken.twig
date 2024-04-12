@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+<h1>Zadej heslo - vstup - kissj</h1>
+    
+<form method="POST" action="/setBearerToken">
+    <label>
+        Bearer Token:
+        <input
+                type="text"
+                name="bearerToken"
+                class="inputTypeText"
+                required="required"
+                placeholder="ABCDEF1234567890"
+        >
+    </label>
+    <input type="submit" class="btn">
+</form>
+{% endblock %}

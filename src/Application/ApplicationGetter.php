@@ -37,7 +37,7 @@ class ApplicationGetter
             'timeout'  => 5,
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ',
+                'Authorization' => sprintf('Bearer %s', $_SESSION[Controller::BEARER_TOKEN_SESSION] ?? ''),
             ]
         ]);
         $container[Twig::class] = function (): Twig {
@@ -54,15 +54,22 @@ class ApplicationGetter
 
     private function addRoutes(App $app): App
     {
+        $app->get('/showBearerTokenInput', Controller::class . '::showBearerTokenInput')
+            ->setName('showBearerTokenInput');
+        $app->post('/setBearerToken', Controller::class . '::setBearerToken')
+            ->setName('setBearerToken');
+
         $app->get('/', Controller::class . '::list')
-            ->setName('list');
+            ->setName('list')
+            ->add(new HeaderAuthorizationMiddleware());
 
         return $app;
     }
 
     private function addMiddlewares(App $app): App
     {
-        $app->add(new WhoopsMiddleware());
+        $app->addRoutingMiddleware();// keep before any redirections
+        $app->add(new WhoopsMiddleware());// keep last
 
         return $app;
     }
