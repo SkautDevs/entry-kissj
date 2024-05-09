@@ -126,6 +126,11 @@ a:visited {
     margin: 1px 0;
 }
 
+.disabled {
+    background: var(--color-grey);
+    cursor: not-allowed;
+}
+
 .inputTypeText {
     border: none;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);

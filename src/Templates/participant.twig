@@ -1,9 +1,12 @@
-<div class="roleListItem" id="roleListItem-{{ p.id }}">
-    {% if p.sfh %} ✓ {% else %} ❌ SFH ❌ {% endif %} |
-    {{ p.firstname }} {{ p.lastname }} -
-    {{ p.nickname }} |
-    {% if p.patrolName %}{{ p.patrolName }} |{% endif %}
-    {{ p.tieCode }} | 
-    {% if date(p.birthDate.value) > date('2006-05-29') %}18+{% else %}17-{% endif %} |
-    <button class="btn">Vstup</button>
-</div>
+<details class="roleListItem" id="roleListItem-{{ p.id }}">
+    <summary>
+        {% include "participantSummary.twig" with {'p': p} %}
+    </summary>
+    <button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup skupiny</button>
+    {% if p.participants %}
+        {% for participant in participants %}
+            {% include "participantSummary.twig" with {'p': p} %}
+            <button class="btn">Samostatný vstup</button>
+        {% endfor %}
+    {% endif %}
+</details>

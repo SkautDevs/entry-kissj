@@ -1,0 +1,6 @@
+{% if p.sfh %} ✓ {% else %} ❌ SFH ❌ {% endif %} |
+{{ p.firstname }} {{ p.lastname }} -
+{{ p.nickname }} |
+{% if p.patrolName %}{{ p.patrolName }} |{% endif %}
+    {{ p.tieCode }} |
+{% if date(p.birthDate.value) > date('2006-05-29') %}18+{% else %}17-{% endif %} |
