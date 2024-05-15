@@ -2,11 +2,9 @@
     <summary>
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
-    <button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup skupiny</button>
-    {% if p.participants %}
-        {% for participant in participants %}
-            {% include "participantSummary.twig" with {'p': p} %}
-            <button class="btn">Samostatný vstup</button>
-        {% endfor %}
-    {% endif %}
+    <button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup</button>
+    {% for groupParticipant in p.participants %}
+        <br>{% include "participantSummary.twig" with {'p': groupParticipant} %}
+        <button class="btn{% if not groupParticipant.sfh %} disabled{% endif %}">Samostatný vstup</button>
+    {% endfor %}
 </details>
