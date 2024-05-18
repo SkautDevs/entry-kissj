@@ -2,6 +2,7 @@
     <summary>
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
+    {% if p.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
     <button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup</button>
     {% for groupParticipant in p.participants %}
         <br>{% include "participantSummary.twig" with {'p': groupParticipant} %}
