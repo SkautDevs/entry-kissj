@@ -3,7 +3,8 @@
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
     {% if p.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
-    <button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup</button>
+    {% if role == 'skupiny' %}<button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup celé skupiny</button>{% endif %}
+    <button class="btn{% if not p.sfh %} disabled{% endif %}">Samostatný vstup</button>
     {% for groupParticipant in p.participants %}
         <br>{% include "participantSummary.twig" with {'p': groupParticipant} %}
         <button class="btn{% if not groupParticipant.sfh %} disabled{% endif %}">Samostatný vstup</button>
