@@ -64,7 +64,11 @@ class Controller
         return $twig->render(
             $response,
             'main.twig',
-            ['list' => $jsonDecode],
+            [
+                'list' => $jsonDecode,
+                'kissj_base_url' => ApplicationGetter::KISSJ_BASE_URI,
+                'bearerToken' => $_SESSION[self::BEARER_TOKEN_SESSION],
+            ],
         );
     }
 

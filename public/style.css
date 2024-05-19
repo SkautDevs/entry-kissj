@@ -157,3 +157,7 @@ a:visited {
 footer {
     margin-top: 1rem;
 }
+
+.inline {
+    display: inline;
+}

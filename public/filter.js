@@ -1,4 +1,5 @@
-function filterInput() {
+function filterInput()
+{
     const items = document.querySelectorAll('.roleListItem')
     const filter = document.querySelector('#inputFilter').value
     const regex = new RegExp(filter, 'i')

@@ -12,6 +12,8 @@ use Zeuxisoo\Whoops\Slim\WhoopsMiddleware;
 
 class ApplicationGetter
 {
+    public const KISSJ_BASE_URI = 'https://staging.kissj.net/';
+
     public function getApp(): App
     {
         $containerBuilder = new ContainerBuilder();
@@ -33,7 +35,7 @@ class ApplicationGetter
     {
         $container = [];
         $container[Client::class] = new Client([
-            'base_uri' => 'https://staging.kissj.net/',
+            'base_uri' => self::KISSJ_BASE_URI,
             'timeout'  => 5,
             'headers' => [
                 'Accept' => 'application/json',

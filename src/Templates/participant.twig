@@ -4,9 +4,25 @@
     </summary>
     {% if p.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
     {% if role == 'skupiny' %}<button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup celé skupiny</button>{% endif %}
-    <button class="btn{% if not p.sfh %} disabled{% endif %}">Samostatný vstup</button>
+    <form
+        class="inline"
+        method="POST"
+        action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
+        onclick="sendEntryRequest(this)"
+    >
+        <input type="submit" class="btn{% if p.sfh %}{# return not here #} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
+        <span class="formResult">✔</span>
+    </form>
     {% for groupParticipant in p.participants %}
         <br>{% include "participantSummary.twig" with {'p': groupParticipant} %}
-        <button class="btn{% if not groupParticipant.sfh %} disabled{% endif %}">Samostatný vstup</button>
+        <form
+            class="inline"
+            method="POST"
+            action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
+            onclick="sendEntryRequest(this, {{ bearerToken }})"
+        >
+            <input type="submit" class="btn {% if not groupParticipant.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
+            <span class="formResult">✔</span>
+        </form>
     {% endfor %}
 </details>

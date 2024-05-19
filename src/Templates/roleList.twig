@@ -1,5 +1,5 @@
 <div class="roleList" id="roleList-{{ role }}">
-    <h2>{{ role }} ({{ participants|length }}){# TODO refresh when entry #}</h2>
+    <h2>{{ role }} ({{ participants|length }})</h2>
     {% if participants %}
         {% for participant in participants %}
             {% include "participant.twig" with {'p': participant, 'role': role} %}
