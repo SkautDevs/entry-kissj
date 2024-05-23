@@ -6,12 +6,16 @@ namespace EntryKissj\Application;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use RuntimeException;
 use Slim\Interfaces\RouteParserInterface;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Controller
 {
@@ -43,6 +47,12 @@ class Controller
         return $this->getRedirectResponse($request, $response, 'list');
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws GuzzleException
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function list(
         Request $request,
         Response $response,
@@ -60,14 +70,13 @@ class Controller
         }
         $body = (string)$httpResponse->getBody();
         $jsonDecode = json_decode($body, true, JSON_THROW_ON_ERROR, JSON_THROW_ON_ERROR);
-
+        setcookie('bearerToken', $_SESSION[self::BEARER_TOKEN_SESSION], time() + 60 * 60 * 12);
         return $twig->render(
             $response,
             'main.twig',
             [
                 'list' => $jsonDecode,
                 'kissj_base_url' => ApplicationGetter::KISSJ_BASE_URI,
-                'bearerToken' => $_SESSION[self::BEARER_TOKEN_SESSION],
             ],
         );
     }

@@ -13,7 +13,7 @@ function sendEntryRequest(form)
                     method: 'POST',
                     body: data,
                     headers: {
-                        'Authorization': 'Bearer ' + 'E',
+                        'authorization': 'Bearer' + document.cookie.match(new RegExp('(^| )bearerToken=([^;]+)'))[2],
                     }
                 },
             );
