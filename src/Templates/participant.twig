@@ -3,7 +3,17 @@
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
     {% if p.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
-    {% if role == 'skupiny' %}<button class="btn{% if not p.sfh %} disabled{% endif %}">Vstup celé skupiny</button>{% endif %}
+    {% if role == 'skupiny' %}
+    <form
+            class="inline"
+            method="POST"
+            action="{{ kissj_base_url ~ 'v3/entry/troop/' ~ p.id }}"
+            onclick="sendTroopEntryRequest(this)"
+    >
+    <button class="btn{% if some(participant.sfh in p.participants) or not p.sfh %} disabled{% endif %}">Vstup celé skupiny</button>
+    </form>
+
+    {% endif %}
     <form
         class="inline"
         method="POST"
