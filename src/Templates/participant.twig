@@ -16,7 +16,8 @@
                     {% set troopSfh = false %}
                 {% endif %}
             {% endfor %}
-        <button class="btn{% if not troopSfh or not p.sfh %} disabled{% endif %}">Vstup celé skupiny</button>
+        <input type="submit" class="btn{% if not troopSfh or not p.sfh %} disabled" disabled="disabled{% endif %}" value="Vstup celé skupiny">
+        <span class="formResult">✔</span>
         </form>
     {% endif %}
     <form
