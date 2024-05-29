@@ -30,7 +30,6 @@
         <span class="formResult">✔</span>
     </form>
     {% for groupParticipant in p.participants %}
-        <br>
         <div id="roleListItem-{{ groupParticipant.id }}">
             {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
             {% include "participantSummary.twig" with {'p': groupParticipant} %}
