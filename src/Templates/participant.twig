@@ -31,16 +31,18 @@
     </form>
     {% for groupParticipant in p.participants %}
         <br>
-        {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
-        {% include "participantSummary.twig" with {'p': groupParticipant} %}
-        <form
-            class="inline"
-            method="POST"
-            action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ groupParticipant.id }}"
-            onclick="sendEntryRequest(this, {{ groupParticipant.id }})"
-        >
-            <input type="submit" class="btn {% if not groupParticipant.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
-            <span class="formResult">✔</span>
-        </form>
+        <div id="roleListItem-{{ groupParticipant.id }}">
+            {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
+            {% include "participantSummary.twig" with {'p': groupParticipant} %}
+            <form
+                class="inline"
+                method="POST"
+                action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ groupParticipant.id }}"
+                onclick="sendEntryRequest(this, {{ groupParticipant.id }})"
+            >
+                <input type="submit" class="btn {% if not groupParticipant.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
+                <span class="formResult">✔</span>
+            </form>
+        </div>
     {% endfor %}
 </details>
