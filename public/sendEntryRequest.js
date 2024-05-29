@@ -1,4 +1,4 @@
-function sendEntryRequest(form)
+function sendEntryRequest(form, participantId)
 {
     form.addEventListener('submit', async event => {
         event.preventDefault();
@@ -21,6 +21,13 @@ function sendEntryRequest(form)
             const responseData = await response.json();
             if (response.ok) {
                 resultElement.innerText = "✔"
+                console.log(participantId)
+
+                // Update the details element based on participantId
+                const detailsElement = document.getElementById("roleListItem-" + participantId);
+                if (detailsElement) {
+                    detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 dorazil');
+                }
             }
         } catch (error) {
             resultElement.innerText = "☠";

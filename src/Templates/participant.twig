@@ -18,7 +18,7 @@
         class="inline"
         method="POST"
         action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
-        onclick="sendEntryRequest(this)"
+        onclick="sendEntryRequest(this, {{ p.id }})"
     >
         <input type="submit" class="btn{% if p.sfh %}{# return not here #} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
         <span class="formResult">✔</span>
@@ -29,7 +29,7 @@
             class="inline"
             method="POST"
             action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
-            onclick="sendEntryRequest(this)"
+            onclick="sendEntryRequest(this, {{ p.id }})"
         >
             <input type="submit" class="btn {% if not groupParticipant.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
             <span class="formResult">✔</span>
