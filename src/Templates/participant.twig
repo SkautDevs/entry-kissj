@@ -29,7 +29,9 @@
         <span class="formResult">✔</span>
     </form>
     {% for groupParticipant in p.participants %}
-        <br>{% include "participantSummary.twig" with {'p': groupParticipant} %}
+        <br>
+        {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
+        {% include "participantSummary.twig" with {'p': groupParticipant} %}
         <form
             class="inline"
             method="POST"
