@@ -70,7 +70,17 @@ class Controller
         }
         $body = (string)$httpResponse->getBody();
         $jsonDecode = json_decode($body, true, JSON_THROW_ON_ERROR, JSON_THROW_ON_ERROR);
-        setcookie('bearerToken', $_SESSION[self::BEARER_TOKEN_SESSION], time() + 60 * 60 * 12);
+
+        // Set cookie options
+        $cookieOptions = [
+            'expires' => time() + 60 * 60 * 24, // 24 hours from now
+            'path' => '',
+            'domain' => '',
+            'secure' => isset($_SERVER['HTTPS']), // Send only over HTTPS if connection is secure
+            'httponly' => false,
+            'samesite' => 'Strict',
+        ];
+        setcookie('bearerToken', $_SESSION[self::BEARER_TOKEN_SESSION], $cookieOptions);
         return $twig->render(
             $response,
             'main.twig',
