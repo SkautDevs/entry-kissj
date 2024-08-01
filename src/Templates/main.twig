@@ -16,7 +16,15 @@
        onkeyup="filterInput()"
 >
 
-{% include 'roleList.twig' with { 'role': 'skupiny', 'participants': list.roles.tl } %}
-{% include 'roleList.twig' with { 'role': 'servis', 'participants': list.roles.ist } %}
-{% include 'roleList.twig' with { 'role': 'guest', 'participants': list.roles.guest } %}
+{% if list.roles.pl %}
+    {% include 'roleList.twig' with { 'role': 'skupiny', 'participants': list.roles.pl } %}
+{% elseif list.roles.tl %}
+    {% include 'roleList.twig' with { 'role': 'skupiny', 'participants': list.roles.tl } %}
+{% endif %}
+{% if list.roles.ist %}
+    {% include 'roleList.twig' with { 'role': 'servis', 'participants': list.roles.ist } %}
+{% endif %}
+{% if list.roles.ist %}
+    {% include 'roleList.twig' with { 'role': 'guest', 'participants': list.roles.guest } %}
+{% endif %}
 {% endblock %}
