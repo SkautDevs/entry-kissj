@@ -26,6 +26,7 @@ function sendEntryRequest(form, participantId)
                 // Update the details element based on participantId
                 const detailsElement = document.getElementById("roleListItem-" + participantId);
                 if (detailsElement) {
+                    detailsElement.innerHTML = detailsElement.innerHTML.replace('🎪 dorazil', '👋 pryč');
                     detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 dorazil');
                 }
             }
@@ -37,7 +38,8 @@ function sendEntryRequest(form, participantId)
 }
 
 
-function sendTroopEntryRequest(form) {
+function sendTroopEntryRequest(form)
+{
     form.addEventListener('submit', async event => {
         event.preventDefault();
         const resultElement = form.getElementsByClassName("formResult")[0];

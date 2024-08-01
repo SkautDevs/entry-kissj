@@ -69,7 +69,7 @@ class Controller
             throw $e;
         }
         $body = (string)$httpResponse->getBody();
-        $jsonDecode = json_decode($body, true, JSON_THROW_ON_ERROR, JSON_THROW_ON_ERROR);
+        $jsonDecode = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 
         // Set cookie options
         $cookieOptions = [
