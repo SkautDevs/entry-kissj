@@ -2,7 +2,9 @@
     <summary>
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
-    {% if p.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
+    {% if p.entryStatus == 'valid' %}<!-- waiting -->⌛ na cestě
+    {% elseif p.entryStatus == 'left' %}<!-- left -->👋 pryč
+    {% else %}<!-- present -->🎪 na akci{% endif %} |
     {% if role == 'skupiny' %}
         <form
             class="inline"
@@ -16,32 +18,23 @@
                     {% set troopSfh = false %}
                 {% endif %}
             {% endfor %}
-        <input type="submit" class="btn{% if not troopSfh or not p.sfh %} disabled" disabled="disabled{% endif %}" value="Vstup celé skupiny">
+        <input type="submit" class="btn
+            {{ dump(p.entryStatus) }}
+            {% if not troopSfh or not p.sfh or p.entryStatus == 'used' %}
+                disabled" disabled="disabled
+            {% endif %}
+            " value="Vstup celé skupiny">
         <span class="formResult">✔</span>
         </form>
     {% endif %}
-    <form
-        class="inline"
-        method="POST"
-        action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
-        onclick="sendEntryRequest(this, {{ p.id }})"
-    >
-        <input type="submit" class="btn{% if not p.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
-        <span class="formResult">✔</span>
-    </form>
+
+    {% include "participantButtons.twig" with {'p': p} %}
+    
     {% for groupParticipant in p.participants %}
         <div id="roleListItem-{{ groupParticipant.id }}">
             {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
             {% include "participantSummary.twig" with {'p': groupParticipant} %}
-            <form
-                class="inline"
-                method="POST"
-                action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ groupParticipant.id }}"
-                onclick="sendEntryRequest(this, {{ groupParticipant.id }})"
-            >
-                <input type="submit" class="btn {% if not groupParticipant.sfh %} disabled" disabled="disabled{% endif %}" value="Samostatný vstup">
-                <span class="formResult">✔</span>
-            </form>
+            {% include "participantButtons.twig" with {'p': groupParticipant} %}
         </div>
     {% endfor %}
 </details>

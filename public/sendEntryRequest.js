@@ -26,8 +26,8 @@ function sendEntryRequest(form, participantId)
                 // Update the details element based on participantId
                 const detailsElement = document.getElementById("roleListItem-" + participantId);
                 if (detailsElement) {
-                    detailsElement.innerHTML = detailsElement.innerHTML.replace('🎪 dorazil', '👋 pryč');
-                    detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 dorazil');
+                    detailsElement.innerHTML = detailsElement.innerHTML.replace('🎪 na akci', '👋 pryč');
+                    detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 na akci');
                 }
             }
         } catch (error) {

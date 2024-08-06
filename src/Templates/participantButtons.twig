@@ -1,0 +1,27 @@
+<form
+        class="inline"
+        method="POST"
+        action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
+        onclick="sendEntryRequest(this, {{ p.id }})"
+>
+    <input type="submit" class="btn
+    {% if not p.sfh or p.entryStatus != 'valid' %}
+        disabled" disabled="disabled
+    {% endif %}
+    " value="Samostatný vstup">
+    <span class="formResult">✈</span>
+</form>
+{{ dump(p.entryStatus) }}
+<form
+        class="inline"
+        method="POST"
+        action="{{ kissj_base_url ~ 'v3/leave/participant/' ~ p.id }}"
+        onclick="sendEntryRequest(this, {{ p.id }})"
+>
+    <input type="submit" class="btn
+    {% if p.entryStatus != 'used' %}
+        disabled" disabled="disabled
+    {% endif %}
+    " value="Samostatný odchod">
+    <span class="formResult">✈</span>
+</form>
