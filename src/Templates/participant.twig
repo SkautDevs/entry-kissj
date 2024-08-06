@@ -2,9 +2,7 @@
     <summary>
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
-    {% if p.entryStatus == 'valid' %}<!-- waiting -->⌛ na cestě
-    {% elseif p.entryStatus == 'left' %}<!-- left -->👋 pryč
-    {% else %}<!-- present -->🎪 na akci{% endif %} |
+    {% include "participantStatus.twig" with {'p': groupParticipant} %} |
     {% if role == 'skupiny' %}
         <form
             class="inline"
@@ -32,9 +30,9 @@
     
     {% for groupParticipant in p.participants %}
         <div id="roleListItem-{{ groupParticipant.id }}">
-            {% if groupParticipant.entryStatus != 'valid' %}<!-- present -->🎪 na akci{% else %}<!-- waiting -->⌛ na cestě{% endif %} |
+            {% include "participantStatus.twig" with {'p': groupParticipant} %} |
             {% include "participantSummary.twig" with {'p': groupParticipant} %}
-            {% include "participantButtons.twig" with {'p': groupParticipant} %}
+            {% include "participantButtons.twig" with {'pButtons': groupParticipant} %}
         </div>
     {% endfor %}
 </details>

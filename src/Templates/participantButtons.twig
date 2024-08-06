@@ -1,25 +1,25 @@
 <form
         class="inline"
         method="POST"
-        action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ p.id }}"
-        onclick="sendEntryRequest(this, {{ p.id }})"
+        action="{{ kissj_base_url ~ 'v3/entry/participant/' ~ pButtons.id }}"
+        onclick="sendEntryRequest(this, {{ pButtons.id }})"
 >
     <input type="submit" class="btn
-    {% if not p.sfh or p.entryStatus != 'valid' %}
+    {% if not pButtons.sfh or pButtons.entryStatus != 'valid' %}
         disabled" disabled="disabled
     {% endif %}
     " value="Samostatný vstup">
     <span class="formResult">✈</span>
 </form>
-{{ dump(p.entryStatus) }}
+{{ dump(pButtons.entryStatus) }}
 <form
         class="inline"
         method="POST"
-        action="{{ kissj_base_url ~ 'v3/leave/participant/' ~ p.id }}"
-        onclick="sendEntryRequest(this, {{ p.id }})"
+        action="{{ kissj_base_url ~ 'v3/leave/participant/' ~ pButtons.id }}"
+        onclick="sendEntryRequest(this, {{ pButtons.id }})"
 >
     <input type="submit" class="btn
-    {% if p.entryStatus != 'used' %}
+    {% if pButtons.entryStatus != 'used' %}
         disabled" disabled="disabled
     {% endif %}
     " value="Samostatný odchod">
