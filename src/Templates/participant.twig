@@ -2,7 +2,7 @@
     <summary>
         {% include "participantSummary.twig" with {'p': p} %}
     </summary>
-    {% include "participantStatus.twig" with {'p': groupParticipant} %} |
+    {% include "participantStatus.twig" with {'p': p} %} |
     {% if role == 'skupiny' %}
         <form
             class="inline"
@@ -16,18 +16,17 @@
                     {% set troopSfh = false %}
                 {% endif %}
             {% endfor %}
-        <input type="submit" class="btn
-            {{ dump(p.entryStatus) }}
-            {% if not troopSfh or not p.sfh or p.entryStatus == 'used' %}
-                disabled" disabled="disabled
-            {% endif %}
-            " value="Vstup celé skupiny">
-        <span class="formResult">✔</span>
+            <input type="submit" class="btn
+                {% if not troopSfh or not p.sfh or p.entryStatus == 'used' %}
+                    disabled" disabled="disabled
+                {% endif %}
+                " value="Vstup celé skupiny">
+            <span class="formResult">✔</span>
         </form>
     {% endif %}
 
-    {% include "participantButtons.twig" with {'p': p} %}
-    
+    {% include "participantButtons.twig" with {'pButtons': p} %}
+
     {% for groupParticipant in p.participants %}
         <div id="roleListItem-{{ groupParticipant.id }}">
             {% include "participantStatus.twig" with {'p': groupParticipant} %} |
