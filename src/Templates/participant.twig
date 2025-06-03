@@ -4,11 +4,12 @@
     </summary>
     {% include "participantStatus.twig" with {'p': p} %} |
     {% if role == 'skupiny' %}
+        {{  p.participants|length + 1}} účastníků |
         <form
             class="inline"
             method="POST"
-            action="{{ kissj_base_url ~ 'v3/entry/troop/' ~ p.id }}"
-            onclick="sendTroopEntryRequest(this)"
+            action="{{ kissj_base_url ~ 'v3/entry/group/' ~ p.id }}"
+            onclick="sendGroupEntryRequest(this)"
         >
             {% set troopSfh = true %}
             {% for participant in p.participants %}

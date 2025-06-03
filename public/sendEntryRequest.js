@@ -38,7 +38,7 @@ function sendEntryRequest(form, participantId)
 }
 
 
-function sendTroopEntryRequest(form)
+function sendGroupEntryRequest(form)
 {
     form.addEventListener('submit', async event => {
         event.preventDefault();

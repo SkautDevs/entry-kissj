@@ -12,7 +12,7 @@ use Zeuxisoo\Whoops\Slim\WhoopsMiddleware;
 
 class ApplicationGetter
 {
-    public const KISSJ_BASE_URI = 'https://staging.kissj.net/';
+    public const KISSJ_BASE_URI = 'https://kissj.net/';
 
     public function getApp(): App
     {
