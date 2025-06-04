@@ -11,16 +11,17 @@
             action="{{ kissj_base_url ~ 'v3/entry/group/' ~ p.id }}"
             onclick="sendGroupEntryRequest(this)"
         >
-            {% set troopSfh = true %}
+          {#  {% set troopSfh = true %}
             {% for participant in p.participants %}
                 {% if participant.sfh == false %}
                     {% set troopSfh = false %}
                 {% endif %}
-            {% endfor %}
+            {% endfor %} #}
             <input type="submit" class="btn
+               {#
                 {% if not troopSfh or not p.sfh or p.entryStatus == 'used' %}
                     disabled" disabled="disabled
-                {% endif %}
+                {% endif %} #}
                 " value="Vstup celé skupiny">
             <span class="formResult">✔</span>
         </form>
