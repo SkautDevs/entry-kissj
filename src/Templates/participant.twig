@@ -18,11 +18,23 @@
                 {% endif %}
             {% endfor %} #}
             <input type="submit" class="btn
-               {#
-                {% if not troopSfh or not p.sfh or p.entryStatus == 'used' %}
+                {% if p.entryStatus == 'left' %}
                     disabled" disabled="disabled
-                {% endif %} #}
+                {% endif %}
                 " value="Vstup celé skupiny">
+            <span class="formResult">✔</span>
+        </form>
+        <form
+                class="inline"
+                method="POST"
+                action="{{ kissj_base_url ~ 'v3/leave/group/' ~ p.id }}"
+                onclick="sendGroupEntryRequest(this)"
+        >
+            <input type="submit" class="btn
+                {% if p.entryStatus == 'valid' %}
+                    disabled" disabled="disabled
+                {% endif %}
+                " value="Odchod celé skupiny">
             <span class="formResult">✔</span>
         </form>
     {% endif %}

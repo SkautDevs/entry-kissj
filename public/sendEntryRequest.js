@@ -1,4 +1,4 @@
-function sendEntryRequest(form, participantId)
+function sendEntryRequest(form)
 {
     form.addEventListener('submit', async event => {
         event.preventDefault();
@@ -20,11 +20,10 @@ function sendEntryRequest(form, participantId)
 
             const responseData = await response.json();
             if (response.ok) {
-                resultElement.innerText = "✔"
-                console.log(participantId)
 
+                resultElement.innerText = "✔"
                 // Update the details element based on participantId
-                const detailsElement = document.getElementById("roleListItem-" + participantId);
+                const detailsElement = document.getElementById("roleListItem-" + responseData['AlteredParticipantId']);
                 if (detailsElement) {
                     detailsElement.innerHTML = detailsElement.innerHTML.replace('🎪 na akci', '👋 pryč');
                     detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 na akci');
@@ -60,7 +59,15 @@ function sendGroupEntryRequest(form)
 
             const responseData = await response.json();
             if (response.ok) {
-                resultElement.innerText = "✔"
+                resultElement.innerText = "✔";
+                for (let ParticipantId of responseData['AlteredParticipantIds']) {
+                    const detailsElement = document.getElementById("roleListItem-" + ParticipantId);
+                    if (detailsElement) {
+                        detailsElement.innerHTML = detailsElement.innerHTML.replace('🎪 na akci', '👋 pryč');
+                        detailsElement.innerHTML = detailsElement.innerHTML.replace('⌛ na cestě', '🎪 na akci');
+                    }
+                }
+
             }
         } catch (error) {
             resultElement.innerText = "☠";
